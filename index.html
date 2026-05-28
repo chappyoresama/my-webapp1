@@ -13,7 +13,8 @@
   --red:#c0392b;--blue:#2980b9;--green:#27ae60;--orange:#e67e22;
   --white:#e8e0d0;--muted:#8a9bb0;--border:#2a3f5f;
   --fh:'Bebas Neue',sans-serif;--fm:'IBM Plex Mono',monospace;--fb:'IBM Plex Sans JP',sans-serif;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --sab:env(safe-area-inset-bottom,0px);
+  --sat:env(safe-area-inset-top,0px);
 }
 body{font-family:var(--fb);background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
 .screen{display:none;min-height:100vh}.screen.active{display:flex;flex-direction:column}
@@ -34,33 +35,32 @@ body{font-family:var(--fb);background:var(--bg);color:var(--white);min-height:10
 .flabel{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
 .finput{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--white);font-family:var(--fm);font-size:13px;outline:none;transition:border-color .15s;width:100%}
 .finput:focus{border-color:var(--gold)}
-.finput[type=number]{-moz-appearance:textfield}
-.finput[type=number]::-webkit-inner-spin-button,.finput[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 select.finput option{background:var(--bg2)}
 .card-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
 .sec-title{font-family:var(--fm);font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
 
-/* numeric stepper */
-.num-wrap{display:flex;align-items:center;gap:0;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .15s}
+.num-wrap{display:flex;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .15s}
 .num-wrap:focus-within{border-color:var(--gold)}
 .num-step{background:rgba(255,255,255,.06);color:var(--muted);border:none;padding:9px 11px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--fm);line-height:1;transition:background .12s;flex-shrink:0}
 .num-step:hover{background:rgba(255,255,255,.12);color:var(--white)}
 .num-inp{background:transparent;border:none;color:var(--white);font-family:var(--fm);font-size:13px;outline:none;text-align:center;padding:9px 4px;width:100%;min-width:0;-moz-appearance:textfield}
 .num-inp::-webkit-inner-spin-button,.num-inp::-webkit-outer-spin-button{-webkit-appearance:none}
 
-/* TERMS */
-#terms-screen{background:var(--bg);padding:0;overflow-y:auto}
-.terms-wrap{max-width:700px;margin:0 auto;padding:24px 18px 40px}
-.terms-title{font-family:var(--fh);font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:20px;text-align:center}
-.terms-body{font-size:13px;line-height:1.85;color:#ccc}
-.terms-body h3{font-family:var(--fm);font-size:12px;color:var(--gold);margin:18px 0 6px;letter-spacing:1px}
-.terms-body p,.terms-body li{margin-bottom:6px}
-.terms-body ul{padding-left:18px}
-.terms-body a{color:var(--blue)}
-.terms-footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* ── POLICY / TERMS shared layout ── */
+.policy-screen-inner{background:var(--bg);overflow-y:auto;flex:1}
+.policy-wrap{max-width:700px;margin:0 auto;padding:24px 18px 48px}
+.policy-title{font-family:var(--fh);font-size:34px;color:var(--gold);letter-spacing:3px;margin-bottom:20px;text-align:center}
+.policy-body{font-size:13px;line-height:1.85;color:#ccc}
+.policy-body h2{font-family:var(--fh);font-size:20px;color:var(--gold2);margin:20px 0 6px;letter-spacing:1px}
+.policy-body h3{font-family:var(--fm);font-size:11px;color:var(--gold);margin:16px 0 5px;letter-spacing:1px;text-transform:uppercase}
+.policy-body p,.policy-body li{margin-bottom:6px}
+.policy-body ul{padding-left:18px}
+.policy-body a{color:var(--blue)}
+.policy-footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.policy-nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:calc(10px + var(--sat))}
 
-/* SETUP */
-#setup-screen{background:radial-gradient(ellipse at center,var(--bg2),var(--bg) 70%);align-items:center;justify-content:flex-start;padding:16px;overflow-y:auto}
+/* ── SETUP ── */
+#setup-screen{background:radial-gradient(ellipse at center,var(--bg2),var(--bg) 70%);align-items:center;justify-content:flex-start;padding:16px;overflow-y:auto;padding-top:calc(16px + var(--sat))}
 .setup-wrap{width:100%;max-width:680px;margin:0 auto}
 .setup-head{text-align:center;margin-bottom:20px}
 .setup-head h1{font-family:var(--fh);font-size:40px;letter-spacing:3px;color:var(--gold)}
@@ -75,7 +75,7 @@ select.finput option{background:var(--bg2)}
 .esc-panel{margin-top:10px;padding:12px;background:rgba(0,0,0,.2);border-radius:8px;border:1px solid var(--border);display:none}
 .esc-panel.open{display:block}
 
-/* MODAL */
+/* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:300;display:none;align-items:center;justify-content:center;padding:14px}
 .modal-overlay.open{display:flex}
 .modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:20px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto}
@@ -85,10 +85,18 @@ select.finput option{background:var(--bg2)}
 .save-item-meta{font-family:var(--fm);font-size:10px;color:var(--muted);margin-top:2px}
 .slot-btns{display:flex;gap:5px;flex-shrink:0}
 
-/* GAME */
+/* ── GAME ── */
 #game-screen{background:var(--bg);padding:0}
-.game-wrap{display:flex;flex-direction:column;height:100dvh;height:100vh;overflow:hidden}
-.g-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:5px;flex-wrap:wrap}
+.game-wrap{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+
+/* Header with safe-area top padding */
+.g-header{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:8px 12px;
+  padding-top:calc(12px + var(--sat));
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;gap:5px;flex-wrap:wrap
+}
 .stage-lbl{font-family:var(--fh);font-size:19px;color:var(--gold);letter-spacing:2px}
 .round-lbl{font-family:var(--fm);font-size:10px;color:var(--muted)}
 .blind-lbl{font-family:var(--fm);font-size:9px;color:var(--muted);margin-top:1px}
@@ -100,19 +108,23 @@ select.finput option{background:var(--bg2)}
 .table-area{flex:1;position:relative;overflow:hidden;background:var(--bg);min-height:0}
 .tbl-svg{position:absolute;inset:0;pointer-events:none}
 
+/* Community cards */
+.comm-area{position:absolute;display:flex;pointer-events:none}
+.tbl-pot{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.tbl-pot-num{font-family:var(--fh);font-size:16px;color:var(--gold2);text-shadow:0 0 8px rgba(240,192,64,.5)}
+.tbl-pot-lbl{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,.38);letter-spacing:1px}
+
 /* Seats */
 .seat{position:absolute;transform:translate(-50%,-50%)}
 .seat-card{border-radius:8px;border:2px solid rgba(255,255,255,.1);padding:5px 7px;min-width:70px;max-width:108px;text-align:center;background:rgba(10,22,40,.9);backdrop-filter:blur(4px);transition:all .2s}
 .seat-card.active{border-color:var(--blue);background:rgba(41,128,185,.25);box-shadow:0 0 14px rgba(41,128,185,.5)}
 .seat-card.folded{opacity:.28;filter:grayscale(.8)}
 .seat-card.allin{border-color:#e74c3c;background:rgba(231,76,60,.12);box-shadow:0 0 9px rgba(231,76,60,.3)}
-/* compact mode */
 .seat-card.compact{min-width:52px;max-width:72px;padding:3px 5px}
 .seat-name{font-family:var(--fh);font-size:13px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .seat-chips{font-family:var(--fm);font-size:9px;color:var(--gold);margin-top:1px}
 .seat-bet{font-family:var(--fm);font-size:8px;color:var(--green);margin-top:1px}
-.seat-name.sm{font-size:10px}
-.seat-chips.sm{font-size:8px}
+.seat-name.sm{font-size:10px}.seat-chips.sm{font-size:8px}
 .seat-badges{display:flex;gap:2px;justify-content:center;margin-top:2px;flex-wrap:wrap}
 .bdg{font-family:var(--fm);font-size:7px;font-weight:600;padding:1px 4px;border-radius:10px}
 .bdg-d{background:rgba(212,160,23,.2);color:var(--gold);border:1px solid var(--gold)}
@@ -124,30 +136,17 @@ select.finput option{background:var(--bg2)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
 
-/* Dealer icon */
-.dealer-icon{position:absolute;transform:translate(-50%,-50%);pointer-events:none;text-align:center}
-.dealer-chip{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#e0e0e0 40%,#aaa 100%);border:3px solid #888;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:13px;color:#222;letter-spacing:1px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
-
-/* Community cards */
-.comm-area{position:absolute;display:flex;gap:4px;pointer-events:none}
-.card-face{border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);flex-shrink:0}
-.tbl-pot{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.tbl-pot-num{font-family:var(--fh);font-size:16px;color:var(--gold2);text-shadow:0 0 8px rgba(240,192,64,.5)}
-.tbl-pot-lbl{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,.38);letter-spacing:1px}
-
 /* ACTION PANEL */
-.action-panel{flex-shrink:0;background:var(--bg2);border-top:2px solid var(--border);padding:8px 12px;padding-bottom:calc(8px + var(--safe-bottom, 0px))}
-/* extra bottom space for home indicator on iOS */
-@supports(padding-bottom: env(safe-area-inset-bottom)){
-  .action-panel{padding-bottom:calc(14px + env(safe-area-inset-bottom));}
+.action-panel{
+  flex-shrink:0;background:var(--bg2);border-top:2px solid var(--border);
+  padding:8px 12px;
+  padding-bottom:calc(14px + var(--sab));
 }
 .ap-info{font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .ap-player{color:var(--blue);font-size:13px;font-weight:600}
 .ap-call{color:var(--green)}
 .undo-btn{margin-left:auto;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 9px;font-family:var(--fm);font-size:9px;cursor:pointer;display:none;align-items:center;gap:3px}
 .undo-btn:hover{color:var(--white);border-color:var(--muted)}
-
-/* Raise area */
 .raise-area{display:none;align-items:center;gap:6px;margin-bottom:7px;background:rgba(0,0,0,.25);border-radius:7px;padding:7px 10px;flex-wrap:wrap}
 .raise-area label{font-family:var(--fm);font-size:10px;color:var(--muted);white-space:nowrap}
 .raise-input-wrap{display:flex;align-items:center;background:var(--bg);border:1px solid var(--gold);border-radius:6px;overflow:hidden}
@@ -159,8 +158,6 @@ select.finput option{background:var(--bg2)}
 .raise-ok{background:var(--gold);color:#1a1000;border:none;border-radius:6px;padding:6px 12px;font-family:var(--fm);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap}
 .raise-ok:hover{background:var(--gold2)}
 .raise-cancel{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-family:var(--fm);font-size:11px;cursor:pointer}
-
-/* Action buttons */
 .act-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .act-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 6px;border:none;border-radius:8px;cursor:pointer;transition:all .15s;font-family:var(--fm);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.8px;min-height:54px}
 .act-btn:disabled{opacity:.3;cursor:not-allowed}
@@ -177,7 +174,7 @@ select.finput option{background:var(--bg2)}
 .act-allin{grid-column:1/-1;min-height:44px;background:rgba(230,126,34,.15);border:2px solid var(--orange);color:#f39c12;flex-direction:row;gap:6px;font-size:12px}
 .act-allin:hover:not(:disabled){background:rgba(230,126,34,.3)}
 
-/* WINNER */
+/* WINNER / END */
 #winner-screen{background:rgba(5,10,20,.97);align-items:center;justify-content:center;padding:16px}
 .win-wrap{width:100%;max-width:500px;text-align:center}
 .win-title{font-family:var(--fh);font-size:46px;letter-spacing:4px;color:var(--gold);margin-bottom:5px}
@@ -190,16 +187,13 @@ select.finput option{background:var(--bg2)}
 .win-card-chips{font-family:var(--fm);font-size:11px;color:var(--green)}
 .win-check{color:var(--gold);font-size:16px;opacity:0}
 .win-card.sel .win-check{opacity:1}
-
-/* END */
 #end-screen{background:radial-gradient(ellipse at center,var(--bg3),var(--bg));align-items:center;justify-content:center;padding:16px}
 .end-wrap{text-align:center;max-width:480px;width:100%}
 .end-opts{display:flex;flex-direction:column;gap:8px;margin-top:16px}
 
-.toast{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(60px);background:var(--bg2);border:1px solid var(--gold);border-radius:7px;padding:8px 15px;font-family:var(--fm);font-size:11px;z-index:500;transition:transform .25s;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;bottom:calc(14px + var(--sab));left:50%;transform:translateX(-50%) translateY(60px);background:var(--bg2);border:1px solid var(--gold);border-radius:7px;padding:8px 15px;font-family:var(--fm);font-size:11px;z-index:500;transition:transform .25s;pointer-events:none;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast.err{border-color:var(--red)}.toast.ok{border-color:var(--green)}
-
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5706141412915612"
@@ -209,50 +203,82 @@ select.finput option{background:var(--bg2)}
 
 <!-- ══ TERMS ══ -->
 <div id="terms-screen" class="screen">
-  <div class="terms-wrap">
-    <div class="terms-title">利用規約</div>
-    <div class="terms-body">
-      <p>本利用規約（以下、「本規約」）は、当サイトが提供するサービス（以下、「本サービス」）の利用条件を定めるものです。ユーザーは、本規約に同意のうえ、本サービスを利用するものとします。</p>
-      <h3>第1条（適用）</h3>
-      <p>本規約は、ユーザーと当サイトとの間の本サービスの利用に関わる一切の関係に適用されるものとします。当サイトは、本サービスに関し、本規約のほか、利用上のルール、ガイドライン等を定める場合があります。これらは本規約の一部を構成するものとします。</p>
-      <h3>第2条（本サービスの内容）</h3>
-      <p>本サービスは、現物のトランプカード等を使用したポーカーゲームを娯楽目的でプレイする際に、チップ計算、ブラインド管理、ゲーム進行等を補助するためのツールです。本サービスは、賭博行為を目的として提供するものではありません。当サイトは、金銭、金券、暗号資産、電子マネー、または換金可能な物品等を賭ける行為を認めません。</p>
-      <h3>第3条（禁止事項）</h3>
-      <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-      <ul>
-        <li>法令または公序良俗に違反する行為</li>
-        <li>犯罪行為または犯罪に関連する行為</li>
-        <li>本サービスを賭博行為に利用する行為</li>
-        <li>金銭その他換金可能な利益を賭ける行為</li>
-        <li>本サービスの運営を妨害する行為</li>
-        <li>不正アクセスまたはこれを試みる行為</li>
-        <li>サーバーまたはネットワーク機能を破壊・妨害する行為</li>
-        <li>他のユーザーまたは第三者の権利利益を侵害する行為</li>
-        <li>本サービスを不正または営利目的で利用する行為</li>
-        <li>その他、当サイトが不適切と判断する行為</li>
-      </ul>
-      <h3>第4条（サービス内容の変更・停止）</h3>
-      <p>当サイトは、システム保守、障害対応、天災その他の理由により、ユーザーに事前通知することなく、本サービスの全部または一部を変更、中断、終了できるものとします。これによってユーザーに生じた損害について、当サイトは一切責任を負いません。</p>
-      <h3>第5条（免責事項）</h3>
-      <p>当サイトは、本サービスの正確性、完全性、有用性、安全性、特定目的適合性等について保証するものではありません。当サイトは、本サービスの利用または利用不能によって生じた損害について、一切責任を負いません。当サイトは、ユーザー間または第三者との間に生じたトラブルについて、一切責任を負いません。当サイトは、本サービスに掲載される広告、外部リンク、第三者サービス等について、その内容、安全性、合法性等を保証するものではありません。</p>
-      <h3>第6条（データの保存および消失）</h3>
-      <p>当サイトは、ユーザーが本サービス上に保存したデータ、履歴、設定情報等について、その保存を保証するものではありません。システム障害、通信障害、端末故障、不正アクセスその他の理由によりデータが消失または破損した場合であっても、当サイトは一切責任を負いません。</p>
-      <h3>第7条（知的財産権）</h3>
-      <p>本サービスに含まれるプログラム、文章、画像、デザインその他一切のコンテンツに関する知的財産権は、当サイトまたは正当な権利者に帰属します。ユーザーは、法令で認められる範囲を超えて、無断で複製、転載、改変等を行ってはなりません。</p>
-      <h3>第8条（反社会的勢力の排除）</h3>
-      <p>ユーザーは、暴力団、暴力団関係者、その他反社会的勢力に該当しないことを表明し、保証するものとします。当サイトは、ユーザーが反社会的勢力に該当すると判断した場合、事前通知なく本サービスの利用停止等の措置を講じることができるものとします。</p>
-      <h3>第9条（規約の変更）</h3>
-      <p>当サイトは、必要と判断した場合には、ユーザーへの通知なく本規約を変更できるものとします。変更後の規約は、本サービス上に掲載された時点で効力を生じるものとします。</p>
-      <h3>第10条（お問い合わせ）</h3>
-      <p>本サービスに関するお問い合わせは、当サイトが定める問い合わせ窓口より受け付けるものとします。<br><a href="https://forms.cloud.microsoft/r/ZFGtc4gfNC" target="_blank">https://forms.cloud.microsoft/r/ZFGtc4gfNC</a></p>
-      <h3>第11条（準拠法・裁判管轄）</h3>
-      <p>本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、当サイト所在地を管轄する裁判所を専属的合意管轄とします。</p>
-      <h3>注意事項</h3>
-      <p>本サービスは、ポーカーゲームの進行補助およびチップ計算を目的としたツールです。日本国内において、金銭その他換金可能な利益を賭ける行為は、法令により禁止される場合があります。ユーザーは、自己の責任において法令を遵守してください。</p>
+  <div class="policy-nav">
+    <button class="btn btn-ghost btn-sm" onclick="showScreen('setup')"><i class="ti ti-arrow-left"></i> 戻る</button>
+    <span style="font-family:var(--fh);font-size:18px;color:var(--gold);letter-spacing:2px">利用規約</span>
+  </div>
+  <div class="policy-screen-inner">
+    <div class="policy-wrap">
+      <div class="policy-body">
+        <p>本利用規約（以下、「本規約」）は、当サイトが提供するサービス（以下、「本サービス」）の利用条件を定めるものです。ユーザーは、本規約に同意のうえ、本サービスを利用するものとします。</p>
+        <h3>第1条（適用）</h3>
+        <p>本規約は、ユーザーと当サイトとの間の本サービスの利用に関わる一切の関係に適用されます。当サイトは、本規約のほか、利用上のルール、ガイドライン等を定める場合があり、これらは本規約の一部を構成します。</p>
+        <h3>第2条（本サービスの内容）</h3>
+        <p>本サービスは、現物のトランプカード等を使用したポーカーゲームを娯楽目的でプレイする際に、チップ計算、ブラインド管理、ゲーム進行等を補助するためのツールです。本サービスは賭博行為を目的とするものではなく、金銭・金券・暗号資産・電子マネーまたは換金可能な物品等を賭ける行為を認めません。</p>
+        <h3>第3条（禁止事項）</h3>
+        <ul>
+          <li>法令または公序良俗に違反する行為</li><li>犯罪行為または犯罪に関連する行為</li>
+          <li>本サービスを賭博行為に利用する行為</li><li>金銭その他換金可能な利益を賭ける行為</li>
+          <li>本サービスの運営を妨害する行為</li><li>不正アクセスまたはこれを試みる行為</li>
+          <li>サーバーまたはネットワーク機能を破壊・妨害する行為</li>
+          <li>他のユーザーまたは第三者の権利利益を侵害する行為</li>
+          <li>本サービスを不正または営利目的で利用する行為</li>
+          <li>その他、当サイトが不適切と判断する行為</li>
+        </ul>
+        <h3>第4条（サービス内容の変更・停止）</h3>
+        <p>当サイトは、システム保守、障害対応、天災その他の理由により、事前通知なく本サービスの全部または一部を変更・中断・終了できるものとします。これによってユーザーに生じた損害について、当サイトは一切責任を負いません。</p>
+        <h3>第5条（免責事項）</h3>
+        <p>当サイトは、本サービスの正確性・完全性・有用性・安全性等について保証しません。本サービスの利用または利用不能によって生じた損害、ユーザー間または第三者との間のトラブルについて、当サイトは一切責任を負いません。</p>
+        <h3>第6条（データの保存および消失）</h3>
+        <p>当サイトは、ユーザーが保存したデータ等の保存を保証しません。システム障害、通信障害、端末故障その他の理由によりデータが消失・破損した場合も、当サイトは一切責任を負いません。</p>
+        <h3>第7条（知的財産権）</h3>
+        <p>本サービスに含まれる一切のコンテンツに関する知的財産権は、当サイトまたは正当な権利者に帰属します。法令で認められる範囲を超えた無断複製・転載・改変等を禁じます。</p>
+        <h3>第8条（反社会的勢力の排除）</h3>
+        <p>ユーザーは、反社会的勢力に該当しないことを表明・保証するものとします。</p>
+        <h3>第9条（規約の変更）</h3>
+        <p>当サイトは、必要と判断した場合には通知なく本規約を変更できるものとします。変更後の規約は、本サービス上に掲載された時点で効力を生じます。</p>
+        <h3>第10条（お問い合わせ）</h3>
+        <p><a href="https://forms.cloud.microsoft/r/ZFGtc4gfNC" target="_blank">https://forms.cloud.microsoft/r/ZFGtc4gfNC</a></p>
+        <h3>第11条（準拠法・裁判管轄）</h3>
+        <p>本規約の解釈には日本法を準拠法とします。紛争が生じた場合には、当サイト所在地を管轄する裁判所を専属的合意管轄とします。</p>
+        <h3>注意事項</h3>
+        <p>日本国内において、金銭その他換金可能な利益を賭ける行為は、法令により禁止される場合があります。ユーザーは自己の責任において法令を遵守してください。</p>
+      </div>
+      <div class="policy-footer">
+        <button class="btn btn-gold" onclick="showScreen('setup')"><i class="ti ti-check"></i> 同意してはじめる</button>
+      </div>
     </div>
-    <div class="terms-footer">
-      <button class="btn btn-gold" onclick="showScreen('setup')"><i class="ti ti-check"></i> 同意してはじめる</button>
-      <button class="btn btn-ghost" onclick="showScreen('setup')">閉じる</button>
+  </div>
+</div>
+
+<!-- ══ PRIVACY ══ -->
+<div id="privacy-screen" class="screen">
+  <div class="policy-nav">
+    <button class="btn btn-ghost btn-sm" onclick="showScreen('setup')"><i class="ti ti-arrow-left"></i> 戻る</button>
+    <span style="font-family:var(--fh);font-size:18px;color:var(--gold);letter-spacing:2px">プライバシーポリシー</span>
+  </div>
+  <div class="policy-screen-inner">
+    <div class="policy-wrap">
+      <div class="policy-body">
+        <p>当サイト（以下、「本サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。</p>
+        <h2>1. 基本方針</h2>
+        <p>本サイトでは、ユーザーの同意なく個人情報を取得することはありません。また、本サイトはポーカーゲームの進行補助およびチップ管理を目的としたツールであり、賭博行為を目的とするものではありません。</p>
+        <h2>2. 保存される情報について</h2>
+        <p>本サイトでは、ゲーム設定・ブラインド設定・チップ情報・進行状況等のデータを、ユーザーご自身の端末内ブラウザ（localStorage等）に保存する場合があります。これらの情報は端末内にのみ保存され、当サイト運営者のサーバーへ自動送信・保存されることはありません。ユーザーは、ブラウザ設定の変更やキャッシュ削除等により保存データが消失する場合があることを了承するものとします。</p>
+        <h2>3. Cookieについて</h2>
+        <p>本サイトでは、利便性向上、アクセス解析、広告配信等のためにCookieを使用する場合があります。Cookieはユーザーのブラウザに保存される情報であり、個人を直接特定するものではありません。ユーザーはブラウザ設定によりCookieを無効化することができます。</p>
+        <h2>4. アクセス解析ツールについて</h2>
+        <p>本サイトでは、サイト利用状況の分析およびサービス改善のため、Google Analytics等のアクセス解析ツールを利用する場合があります。これらのツールではCookieを利用してトラフィックデータを収集することがありますが、個人を特定する情報は含まれません。Googleによるデータ収集・処理の仕組みについては、Googleのポリシーをご確認ください。</p>
+        <h2>5. 広告配信について</h2>
+        <p>本サイトでは、第三者配信事業者（Google AdSense等）による広告を掲載する場合があります。広告配信事業者は、ユーザーの興味・関心に応じた広告を表示するため、Cookie等を使用する場合があります。パーソナライズ広告は、Google広告設定等から無効化することができます。</p>
+        <h2>6. 外部リンクについて</h2>
+        <p>本サイトには外部サイトへのリンクが含まれる場合があります。リンク先サイトで提供される情報・サービス等について、本サイトは一切責任を負いません。</p>
+        <h2>7. プライバシーポリシーの変更</h2>
+        <p>本サイトは、法令改正・サービス内容の変更その他必要に応じて、本ポリシーを予告なく変更することがあります。変更後のプライバシーポリシーは、本サイト上に掲載された時点で効力を生じるものとします。</p>
+      </div>
+      <div class="policy-footer">
+        <button class="btn btn-ghost" onclick="showScreen('setup')">閉じる</button>
+      </div>
     </div>
   </div>
 </div>
@@ -308,7 +334,7 @@ select.finput option{background:var(--bg2)}
           <label class="flabel">SB</label>
           <div class="num-wrap">
             <button class="num-step" onclick="stepField('sb-amount',-100)">−</button>
-            <input class="num-inp" type="number" id="sb-amount" value="100" min="1" step="100">
+            <input class="num-inp" type="number" id="sb-amount" value="100" min="0" step="100">
             <button class="num-step" onclick="stepField('sb-amount',100)">+</button>
           </div>
         </div>
@@ -316,12 +342,11 @@ select.finput option{background:var(--bg2)}
           <label class="flabel">BB</label>
           <div class="num-wrap">
             <button class="num-step" onclick="stepField('bb-amount',-100)">−</button>
-            <input class="num-inp" type="number" id="bb-amount" value="200" min="1" step="100">
+            <input class="num-inp" type="number" id="bb-amount" value="200" min="0" step="100">
             <button class="num-step" onclick="stepField('bb-amount',100)">+</button>
           </div>
         </div>
       </div>
-
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
         <span class="flabel" style="margin:0">ブラインド増額</span>
         <button class="btn-toggle" id="esc-toggle-btn" onclick="toggleEscalation()">OFF</button>
@@ -361,8 +386,9 @@ select.finput option{background:var(--bg2)}
       <button class="btn btn-gold" onclick="startGame()"><i class="ti ti-cards"></i> ゲーム開始</button>
       <button class="btn btn-sec" onclick="openLoadModal()"><i class="ti ti-folder-open"></i></button>
     </div>
-    <div style="text-align:center;margin-bottom:16px">
+    <div style="text-align:center;margin-bottom:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
       <button class="btn btn-ghost btn-sm" onclick="showScreen('terms')"><i class="ti ti-file-text"></i> 利用規約</button>
+      <button class="btn btn-ghost btn-sm" onclick="showScreen('privacy')"><i class="ti ti-lock"></i> プライバシーポリシー</button>
     </div>
   </div>
 </div>
@@ -460,8 +486,7 @@ select.finput option{background:var(--bg2)}
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══════════════════ STATE ═══════════════════
-let G=null, hist=[];
+let G=null,hist=[];
 const STAGES=['preflop','flop','turn','river'];
 const SLBL={preflop:'PRE-FLOP',flop:'FLOP',turn:'TURN',river:'RIVER'};
 const CCNT={preflop:0,flop:3,turn:4,river:5};
@@ -480,12 +505,12 @@ function undoAction(){
   updateGameUI(); showToast('取り消しました','ok');
 }
 
-// ═══════════════════ SETUP HELPERS ═══════════════════
 function stepField(id,delta){
   const el=document.getElementById(id);
-  const min=parseFloat(el.min)||0;
+  const min=parseFloat(el.min);
   const v=parseFloat(el.value)||0;
-  el.value=Math.max(min,v+delta);
+  const nv=v+delta;
+  el.value=(!isNaN(min))?Math.max(min,nv):nv;
   updateEscPreview();
 }
 function stepRaise(delta){
@@ -514,15 +539,14 @@ function toggleEscalation(){
 }
 function updateEscPreview(){
   if(!escOn) return;
-  const interval=parseInt(document.getElementById('esc-interval').value)||5;
-  const sbAdd=parseInt(document.getElementById('esc-sb-add').value)||0;
-  const bbAdd=parseInt(document.getElementById('esc-bb-add').value)||0;
-  const sb0=parseInt(document.getElementById('sb-amount').value)||100;
-  const bb0=parseInt(document.getElementById('bb-amount').value)||200;
+  const iv=parseInt(document.getElementById('esc-interval').value)||5;
+  const sa=parseInt(document.getElementById('esc-sb-add').value)||0;
+  const ba=parseInt(document.getElementById('esc-bb-add').value)||0;
+  const s0=parseInt(document.getElementById('sb-amount').value)||100;
+  const b0=parseInt(document.getElementById('bb-amount').value)||200;
   document.getElementById('esc-preview').textContent=
-    `例：${interval}ゲーム後 → SB ¥${sb0+sbAdd} / BB ¥${bb0+bbAdd}`;
+    `例：${iv}ゲーム後 → SB ¥${s0+sa} / BB ¥${b0+ba}`;
 }
-
 function updatePlayerInputs(){
   const n=parseInt(document.getElementById('player-count').value);
   const list=document.getElementById('player-name-inputs');
@@ -538,7 +562,6 @@ function toggleBlindInputs(){
   const on=document.getElementById('blind-mode').value==='on';
   ['sb-group','bb-group'].forEach(id=>document.getElementById(id).style.opacity=on?'1':'0.4');
 }
-
 function startGame(){
   const n=parseInt(document.getElementById('player-count').value);
   const chips=parseInt(document.getElementById('start-chips').value)||10000;
@@ -563,7 +586,6 @@ function startGame(){
   showScreen('game');
 }
 
-// ═══════════════════ ROUND ═══════════════════
 function initRound(){
   if(G.escMode==='on'&&G.round>1){
     const level=Math.floor((G.round-1)/G.escInterval);
@@ -604,7 +626,6 @@ function postBlind(idx,amount){
   if(p.chips===0){p.isAllIn=true;p.status='allin';}
 }
 
-// ═══════════════════ ACTIONS ═══════════════════
 function doAction(action){
   const idx=G.currentPlayerIdx;
   const p=G.players[idx];
@@ -654,7 +675,6 @@ function doAction(action){
   if(!G.playersWhoActed.includes(idx)) G.playersWhoActed.push(idx);
   advanceTurn();
 }
-
 function advanceTurn(){
   const notFolded=G.players.map((_,i)=>i).filter(i=>!['folded','busted'].includes(G.players[i].status));
   if(notFolded.length===1){awardPot(notFolded);return;}
@@ -672,8 +692,6 @@ function advanceTurn(){
   G.currentPlayerIdx=next;
   updateGameUI();
 }
-
-// ═══════════════════ STAGE ═══════════════════
 function nextStage(){
   const si=STAGES.indexOf(G.stage);
   if(si===STAGES.length-1){startShowdown();return;}
@@ -701,8 +719,6 @@ function calcSidePots(){
     .map(i=>({label:`${G.players[i].name} SP`,amt:G.totalBetsThisRound[i]||0}))
     .sort((a,b)=>a.amt-b.amt);
 }
-
-// ═══════════════════ SHOWDOWN / END ═══════════════════
 function startShowdown(){
   const rem=G.players.map((_,i)=>i).filter(i=>!['folded','busted'].includes(G.players[i].status));
   if(rem.length===1){awardPot(rem);return;}
@@ -769,12 +785,17 @@ function nextRound(){
   initRound(); showScreen('game');
 }
 
-// ═══════════════════ RENDER TABLE ═══════════════════
+// ── RENDER TABLE ──
 function updateGameUI(){
   document.getElementById('hdr-pot').textContent='¥'+G.pot.toLocaleString();
   document.getElementById('stage-lbl').textContent=SLBL[G.stage];
   renderTable();
   updateActionPanel();
+}
+
+function capsulePath(cx,cy,w,h){
+  const r=h/2, x0=cx-w/2, x1=cx+w/2, y0=cy-h/2, y1=cy+h/2;
+  return `M${x0+r} ${y0} L${x1-r} ${y0} A${r} ${r} 0 0 1 ${x1-r} ${y1} L${x0+r} ${y1} A${r} ${r} 0 0 1 ${x0+r} ${y0}Z`;
 }
 
 function renderTable(){
@@ -783,22 +804,17 @@ function renderTable(){
   const H=area.clientHeight||250;
   area.innerHTML='';
 
-  // ── Capsule table: wider than tall, with rounded ends ──
-  // Use a stadium/pill shape: two semicircles + rectangle
-  const TW=Math.min(W*0.84,560);
-  const TH=Math.min(H*0.50,160);
+  const TW=Math.min(W*0.82,560);
+  const TH=Math.min(H*0.48,155);
   const cx=W/2, cy=H/2;
-  const TX=(W-TW)/2, TY=(H-TH)/2;
-  const cornerR=TH/2; // full semicircle on each end
 
+  // SVG table
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('class','tbl-svg');
   svg.setAttribute('width',W); svg.setAttribute('height',H);
-
   const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
-  // felt gradient
   const grad=document.createElementNS('http://www.w3.org/2000/svg','radialGradient');
-  grad.setAttribute('id','fg'); grad.setAttribute('cx','45%'); grad.setAttribute('cy','40%');
+  grad.setAttribute('id','fg7'); grad.setAttribute('cx','45%'); grad.setAttribute('cy','40%');
   [[0,'#2d5c2d'],[50,'#1a3a1a'],[100,'#0d2a0d']].forEach(([o,c])=>{
     const s=document.createElementNS('http://www.w3.org/2000/svg','stop');
     s.setAttribute('offset',o+'%'); s.setAttribute('stop-color',c); grad.appendChild(s);
@@ -806,40 +822,25 @@ function renderTable(){
   defs.appendChild(grad); svg.appendChild(defs);
 
   // Rail
-  const railPath=`M ${TX-12+cornerR+12} ${TY-12} 
-    L ${TX+TW-cornerR+12} ${TY-12}
-    A ${cornerR+12} ${cornerR+12} 0 0 1 ${TX+TW-cornerR+12} ${TY+TH+12}
-    L ${TX+cornerR-12+12} ${TY+TH+12}
-    A ${cornerR+12} ${cornerR+12} 0 0 1 ${TX+cornerR-12+12} ${TY-12} Z`;
   const rail=document.createElementNS('http://www.w3.org/2000/svg','path');
-  rail.setAttribute('d',capsulePath(cx,cy,TW+24,TH+24));
+  rail.setAttribute('d',capsulePath(cx,cy,TW+22,TH+22));
   rail.setAttribute('fill','#8B6914'); svg.appendChild(rail);
-  // Rail edge
-  const railEdge=document.createElementNS('http://www.w3.org/2000/svg','path');
-  railEdge.setAttribute('d',capsulePath(cx,cy,TW+20,TH+20));
-  railEdge.setAttribute('fill','none'); railEdge.setAttribute('stroke','#c8a050'); railEdge.setAttribute('stroke-width','2');
-  svg.appendChild(railEdge);
+  const railE=document.createElementNS('http://www.w3.org/2000/svg','path');
+  railE.setAttribute('d',capsulePath(cx,cy,TW+18,TH+18));
+  railE.setAttribute('fill','none'); railE.setAttribute('stroke','#c8a050'); railE.setAttribute('stroke-width','2');
+  svg.appendChild(railE);
   // Felt
   const felt=document.createElementNS('http://www.w3.org/2000/svg','path');
   felt.setAttribute('d',capsulePath(cx,cy,TW,TH));
-  felt.setAttribute('fill','url(#fg)'); svg.appendChild(felt);
-  // Inner line
+  felt.setAttribute('fill','url(#fg7)'); svg.appendChild(felt);
+  // Inner
   const inner=document.createElementNS('http://www.w3.org/2000/svg','path');
   inner.setAttribute('d',capsulePath(cx,cy,TW-28,TH-28));
   inner.setAttribute('fill','none'); inner.setAttribute('stroke','rgba(255,255,255,0.06)'); inner.setAttribute('stroke-width','1');
   svg.appendChild(inner);
   area.appendChild(svg);
 
-  // ── Dealer chip icon (top center, on the table felt) ──
-  const dealerX=cx;
-  const dealerY=TY+28;
-  const dDiv=document.createElement('div');
-  dDiv.className='dealer-icon';
-  dDiv.style.cssText=`left:${dealerX}px;top:${dealerY}px`;
-  dDiv.innerHTML=`<div class="dealer-chip">D</div>`;
-  area.appendChild(dDiv);
-
-  // ── Community cards (center of table) ──
+  // Community cards
   const cc=CCNT[G.stage];
   const cW=22, cH=32, cGap=4;
   const totalCW=5*(cW+cGap)-cGap;
@@ -849,70 +850,54 @@ function renderTable(){
   comDiv.style.cssText=`left:${ccX}px;top:${ccY}px;gap:${cGap}px`;
   for(let i=0;i<5;i++){
     const c=document.createElement('div');
-    c.style.width=cW+'px'; c.style.height=cH+'px'; c.style.borderRadius='3px'; c.style.flexShrink='0';
-    c.style.display='flex'; c.style.alignItems='center'; c.style.justifyContent='center';
+    c.style.cssText=`width:${cW}px;height:${cH}px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center`;
     if(i<cc){
-      const suits=['♠','♥','♦','♣'];
-      const sym=suits[i%4]; const isRed=sym==='♥'||sym==='♦';
+      const suits=['♠','♥','♦','♣']; const sym=suits[i%4]; const isRed=sym==='♥'||sym==='♦';
       c.style.background='linear-gradient(160deg,#f8f4ec,#e8e0d0)';
       c.style.border='1.5px solid rgba(200,180,120,.4)';
       c.innerHTML=`<span style="color:${isRed?'#c0392b':'#1a1a2e'};font-size:13px;line-height:1">${sym}</span>`;
     } else {
-      c.style.background='rgba(255,255,255,.04)';
-      c.style.border='1.5px dashed rgba(255,255,255,.1)';
+      c.style.background='rgba(255,255,255,.04)'; c.style.border='1.5px dashed rgba(255,255,255,.1)';
     }
     comDiv.appendChild(c);
   }
   area.appendChild(comDiv);
 
-  // ── Pot ──
-  const potY=cy+cH/2+14;
+  // Pot
   const potDiv=document.createElement('div');
   potDiv.className='tbl-pot';
-  potDiv.style.cssText=`left:${cx}px;top:${potY}px`;
+  potDiv.style.cssText=`left:${cx}px;top:${cy+cH/2+14}px`;
   let spHtml=G.sidePots.length?'<div style="margin-top:2px">'+G.sidePots.map(s=>`<span style="font-family:var(--fm);font-size:7px;padding:1px 4px;background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.3);border-radius:8px;color:#e74c3c;display:inline-block;margin:1px">${s.label}</span>`).join('')+'</div>':'';
   potDiv.innerHTML=`<div class="tbl-pot-lbl">POT</div><div class="tbl-pot-num">¥${G.pot.toLocaleString()}</div>${spHtml}`;
   area.appendChild(potDiv);
 
-  // ── Seats: bottom arc only, avoid left/right edges ──
+  // Seats — bottom arc, no left/right edge clipping
   const activePl=G.players.map((_,i)=>i).filter(i=>G.players[i].status!=='busted');
   const totalPl=activePl.length;
-  // compact if many players
   const compact=totalPl>=9;
-
-  // Bottom arc: from ~210° to ~330° (avoiding left/right extremes)
-  // In radians: 210° = 7π/6 ≈ 3.665, 330° = 11π/6 ≈ 5.760
-  // For capsule shape, seats orbit slightly outside the rail
-  const seatRx=(TW/2)+56;
-  const seatRy=(TH/2)+48;
-  // Safe horizontal margin: keep seats at least 44px from each side
-  const margin=44;
-  // Arc spans bottom 2/3 of circle
-  const arcStart=Math.PI*1.12; // ~201°
-  const arcEnd=Math.PI*1.88;   // ~339°
+  const seatRx=(TW/2)+58;
+  const seatRy=(TH/2)+50;
+  const margin=50;
+  const arcStart=Math.PI*1.10;
+  const arcEnd=Math.PI*1.90;
 
   activePl.forEach((pi,arrIdx)=>{
     const p=G.players[pi];
     let angle;
     if(totalPl===1) angle=(arcStart+arcEnd)/2;
     else angle=arcStart+(arcEnd-arcStart)*(arrIdx/(totalPl-1));
-
     let sx=cx+seatRx*Math.cos(angle);
     let sy=cy+seatRy*Math.sin(angle);
-    // Clamp X to safe margin
-    sx=Math.max(margin+46,Math.min(W-margin-46,sx));
-
+    sx=Math.max(margin+48,Math.min(W-margin-48,sx));
     const seat=document.createElement('div');
     seat.className='seat';
     seat.style.cssText=`left:${sx}px;top:${sy}px`;
-
     const isActive=pi===G.currentPlayerIdx&&p.status==='active';
     let cls='seat-card';
     if(isActive) cls+=' active';
     else if(p.status==='folded') cls+=' folded';
     else if(p.isAllIn) cls+=' allin';
     if(compact) cls+=' compact';
-
     const roles=[];
     if(pi===G.dealerIdx) roles.push('<span class="bdg bdg-d">BTN</span>');
     if(G.blindMode==='on'){
@@ -923,27 +908,13 @@ function renderTable(){
     if(p.status==='folded') roles.push('<span class="bdg bdg-f">F</span>');
     const betHtml=p.bet>0&&!compact?`<div class="seat-bet">¥${p.bet.toLocaleString()}</div>`:'';
     const dot=isActive?'<div class="active-dot"></div>':'';
-    const nameCls=compact?'seat-name sm':'seat-name';
-    const chipsCls=compact?'seat-chips sm':'seat-chips';
-    seat.innerHTML=`<div class="${cls}">
-      <div class="${nameCls}">${p.name}</div>
-      <div class="${chipsCls}">¥${p.chips.toLocaleString()}</div>
-      ${betHtml}
-      <div class="seat-badges">${roles.join('')}</div>${dot}
-    </div>`;
+    const nc=compact?'seat-name sm':'seat-name';
+    const cc2=compact?'seat-chips sm':'seat-chips';
+    seat.innerHTML=`<div class="${cls}"><div class="${nc}">${p.name}</div><div class="${cc2}">¥${p.chips.toLocaleString()}</div>${betHtml}<div class="seat-badges">${roles.join('')}</div>${dot}</div>`;
     area.appendChild(seat);
   });
 }
 
-// Helper: SVG capsule path centered at (cx,cy) with total width w and height h
-function capsulePath(cx,cy,w,h){
-  const r=h/2;
-  const x0=cx-w/2, x1=cx+w/2;
-  const y0=cy-h/2, y1=cy+h/2;
-  return `M ${x0+r} ${y0} L ${x1-r} ${y0} A ${r} ${r} 0 0 1 ${x1-r} ${y1} L ${x0+r} ${y1} A ${r} ${r} 0 0 1 ${x0+r} ${y0} Z`;
-}
-
-// ─── Action Panel ───
 function updateActionPanel(){
   const p=G.players[G.currentPlayerIdx]; if(!p) return;
   document.getElementById('ap-name').textContent=p.name;
@@ -957,27 +928,22 @@ function updateActionPanel(){
   const maxR=(p.chips||0)+myBet;
   const ri=document.getElementById('raise-input');
   ri.min=minR; ri.max=maxR;
-  if(!ri._userEdited||parseInt(ri.value)<minR) ri.value=minR;
+  if(parseInt(ri.value)<minR||!ri.value) ri.value=minR;
   document.getElementById('raise-hint').textContent=`最低 ¥${minR.toLocaleString()} 〜 ¥${maxR.toLocaleString()}`;
   document.getElementById('btn-raise').disabled=(p.chips||0)<=toCall;
   document.getElementById('btn-allin').disabled=(p.chips||0)===0;
 }
 function showRaise(){
-  const area=document.getElementById('raise-area');
-  area.style.display='flex';
-  const idx=G.currentPlayerIdx;
-  const myBet=G.betsThisRound[idx]||0;
+  document.getElementById('raise-area').style.display='flex';
   const minR=calcMinRaise();
   const ri=document.getElementById('raise-input');
   ri.value=minR;
-  ri._userEdited=false;
-  ri.oninput=()=>{ri._userEdited=true;};
   ri.focus();
 }
 function hideRaise(){document.getElementById('raise-area').style.display='none';}
 
-// ═══════════════════ SAVE / LOAD ═══════════════════
-function getSK(slot){return `poker_v6_${slot}`;}
+// SAVE/LOAD
+function getSK(slot){return `poker_v7_${slot}`;}
 function getAllSaves(){
   const arr=[];
   for(let i=0;i<MAX_SLOTS;i++){
@@ -1009,15 +975,8 @@ function saveToSlot(slot){
   closeModal('save-modal');
   document.getElementById('after-save-modal').classList.add('open');
 }
-function goToSetupFromModal(){
-  closeModal('after-save-modal');
-  resetToSetup();
-}
-function deleteSlot(slot){
-  localStorage.removeItem(getSK(slot));
-  openSaveModal();
-  showToast(`スロット ${slot+1} を削除しました`);
-}
+function goToSetupFromModal(){closeModal('after-save-modal');resetToSetup();}
+function deleteSlot(slot){localStorage.removeItem(getSK(slot));openSaveModal();showToast(`スロット ${slot+1} を削除しました`);}
 function openLoadModal(){
   const saves=getAllSaves();
   const ui=document.getElementById('load-slots-ui'); ui.innerHTML='';
@@ -1029,10 +988,8 @@ function openLoadModal(){
       const div=document.createElement('div'); div.className='save-item';
       const ts=new Date(s.data.savedAt||0).toLocaleString('ja-JP');
       const names=s.data.players.map(p=>p.name).join(', ');
-      div.innerHTML=`<div>
-        <div class="save-item-name">スロット ${s.slot+1} — ゲーム ${s.data.round}</div>
-        <div class="save-item-meta">${names}<br><span style="font-size:9px">${ts}</span></div>
-      </div>
+      div.innerHTML=`<div><div class="save-item-name">スロット ${s.slot+1} — ゲーム ${s.data.round}</div>
+        <div class="save-item-meta">${names}<br><span style="font-size:9px">${ts}</span></div></div>
       <div class="slot-btns">
         <button class="btn btn-gold btn-sm" onclick="loadSlot(${s.slot})">読込</button>
         <button class="btn btn-ghost btn-sm" onclick="deleteSlot(${s.slot})" style="color:var(--red);border-color:var(--red)"><i class="ti ti-trash"></i></button>
@@ -1064,7 +1021,6 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{
 });
 function resetToSetup(){G=null;hist=[];updatePlayerInputs();showScreen('setup');}
 
-// ═══════════════════ MISC ═══════════════════
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(name+'-screen').classList.add('active');
