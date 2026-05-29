@@ -530,10 +530,21 @@ function initRound() {
     } else {
       postBlind(G.sbIdx,G.sbAmount); postBlind(G.bbIdx,G.bbAmount);
       G.currentBet=G.bbAmount; G.minRaise=G.bbAmount;
-      G.playersWhoActed=[]; G.currentPlayerIdx=nextActive(G.bbIdx);
+      G.playersWhoActed=[];
+const next = nextActive(G.bbIdx);
+if (next === -1) {
+  buildPotsAndShowdown();
+  return;
+}
+G.currentPlayerIdx = next;
     }
   } else {
-    G.currentPlayerIdx=nextActive(G.dealerIdx);
+    const next = nextActive(G.dealerIdx);
+if (next === -1) {
+  buildPotsAndShowdown();
+  return;
+}
+G.currentPlayerIdx = next;
   }
   document.getElementById('round-lbl').textContent=`ゲーム ${G.round}`;
   document.getElementById('stage-lbl').textContent=SLBL[G.stage];
@@ -662,16 +673,21 @@ function nextStage() {
   G.players.forEach(p=>{p.bet=0;});
   const canAct=G.players.map((_,i)=>i).filter(i=>G.players[i].status==='active');
   if (canAct.length===0){setTimeout(()=>nextStage(),300);return;}
-  G.currentPlayerIdx=nextActive(G.dealerIdx);
-  hist=[]; document.getElementById('undo-btn').style.display='none';
-  hideRaise(); updateGameUI(); showToast(SLBL[G.stage]+' へ進みました','ok');
+ const next = nextActive(G.dealerIdx);
+if (next === -1) {
+  setTimeout(()=>nextStage(),300);
+  return;
+}
+G.currentPlayerIdx = next;
+hist=[]; document.getElementById('undo-btn').style.display='none';
+hideRaise(); updateGameUI(); showToast(SLBL[G.stage]+' へ進みました','ok');
 }
 function nextActive(from) {
   for (let i=1;i<=G.players.length;i++){
     const idx=(from+i)%G.players.length;
-    if (['active','allin'].includes(G.players[idx].status)) return idx;
+    if (G.players[idx].status==='active') return idx;
   }
-  return from;
+  return -1;
 }
 
 // ═══════════════════════════ POT CALCULATION ═════════════════
